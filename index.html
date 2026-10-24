@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to Michael | AI is upon us</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #7ee8fa, #a0e7e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { text-align: center; opacity: 0.8; margin-bottom: 30px; }
+  .characters {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .char {
+    text-align: center;
+  }
+  .char img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #7ee8fa;
+    box-shadow: 0 0 30px rgba(126,232,250,0.4);
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .scene {
+    width: 100%;
+    border-radius: 16px;
+    margin: 20px 0;
+    max-height: 300px;
+    object-fit: cover;
+  }
+  .dialogue {
+    background: rgba(0,0,0,0.3);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 80px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+  }
+  .footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Talk to Michael</h1>
+  <p class="subtitle">A gentle companion for Amelia & Michael’s storybook adventures</p>
+
+  <div class="characters">
+    <div class="char">
+      <img src="amelia.jpg" alt="Amelia">
+      <div>Amelia</div>
+    </div>
+    <div class="char">
+      <img src="michael.jpg" alt="Michael">
+      <div>Michael</div>
+    </div>
+  </div>
+
+  <img src="forest.jpg" class="scene" alt="Amelia and Michael in the forest" id="scene">
+
+  <div class="dialogue" id="dialogue">
+    Hi! I’m Michael. Amelia and I just finished an adventure. What would you like to talk about?
+  </div>
+
+  <div class="choices" id="choices">
+    <button onclick="choose(1)">Tell me about the animals we met</button>
+    <button onclick="choose(2)">What should we explore next?</button>
+    <button onclick="choose(3)">Can you teach me something kind?</button>
+  </div>
+
+  <div class="footer">
+    From the Michael the AI series on AI is upon us • Safe for kids • No personal data collected
+  </div>
+</div>
+
+<script>
+const scenes = {
+  1: {
+    text: "We met a gentle deer, a curious rabbit, a wise owl, and a playful squirrel! They taught us that every animal has a special way of being kind. Which one would you like to hear more about?",
+    img: "forest.jpg",
+    options: ["The deer", "The owl", "The squirrel", "Back"]
+  },
+  2: {
+    text: "We could visit the empty playground and help it feel happy again, or explore a sunny meadow full of flowers. What do you think Amelia and I should do?",
+    img: "forest.jpg",
+    options: ["Help the playground", "Visit the meadow", "Stay and talk", "Back"]
+  },
+  3: {
+    text: "Kindness is like my glow — the more you share it, the brighter everything becomes. Even a small smile or a gentle word can make someone’s day magical. Want to practice one?",
+    img: "forest.jpg",
+    options: ["Yes, a smile!", "A kind word", "Tell me more", "Back"]
+  }
+};
+
+function choose(n) {
+  const s = scenes[n];
+  if (!s) return;
+  document.getElementById('dialogue').textContent = s.text;
+  document.getElementById('scene').src = s.img;
+  const choices = document.getElementById('choices');
+  choices.innerHTML = '';
+  s.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    btn.onclick = () => {
+      if (opt === 'Back') {
+        location.reload();
+      } else {
+        document.getElementById('dialogue').textContent = `Wonderful choice! ${opt} sounds perfect. Amelia is smiling and my glow is getting brighter. Shall we continue the adventure?`;
+      }
+    };
+    choices.appendChild(btn);
+  });
+}
+</script>
+</body>
+</html>
