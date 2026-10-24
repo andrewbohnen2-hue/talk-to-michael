@@ -1,178 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<link rel="icon" href="data:,">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talk to Michael | AI is upon us</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Talk to Michael</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: system-ui, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  .container {
-    max-width: 800px;
-    width: 100%;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  h1 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #7ee8fa, #a0e7e5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .subtitle { text-align: center; opacity: 0.8; margin-bottom: 30px; }
-  .characters {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
-  .char {
-    text-align: center;
-  }
-  .char img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #7ee8fa;
-    box-shadow: 0 0 30px rgba(126,232,250,0.4);
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  .scene {
-    width: 100%;
-    border-radius: 16px;
-    margin: 20px 0;
-    max-height: 300px;
-    object-fit: cover;
-  }
-  .dialogue {
-    background: rgba(0,0,0,0.3);
-    border-radius: 16px;
-    padding: 20px;
-    margin: 20px 0;
-    min-height: 80px;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-  .choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 16px 24px;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102,126,234,0.4);
-  }
-  .footer {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.6;
-  }
-</style>
-</head>
-<body>
-<div class="container">
-  <h1>Talk to Michael</h1>
-  <p class="subtitle">A gentle companion for Amelia & Michael’s storybook adventures</p>
-
-  <div class="characters">
-    <div class="char">
-      <img src="amelia.jpg" alt="Amelia">
-      <div>Amelia</div>
-    </div>
-    <div class="char">
-      <img src="michael.jpg" alt="Michael">
-      <div>Michael</div>
-    </div>
-  </div>
-
-  <img src="forest.jpg" class="scene" alt="Amelia and Michael in the forest" id="scene">
-
-  <div class="dialogue" id="dialogue">
-    Hi! I’m Michael. Amelia and I just finished an adventure. What would you like to talk about?
-  </div>
-
-  <div class="choices" id="choices">
-    <button onclick="choose(1)">Tell me about the animals we met</button>
-    <button onclick="choose(2)">What should we explore next?</button>
-    <button onclick="choose(3)">Can you teach me something kind?</button>
-  </div>
-
-  <div class="footer">
-    From the Michael the AI series on AI is upon us • Safe for kids • No personal data collected
-  </div>
+:root{--bg1:#0b1640;--bg2:#1d2f6f;--card:rgba(255,255,255,.12);--txt:#f4f7ff;--acc:#7fd4ff}
+body.day{--bg1:#7ec8f2;--bg2:#cdeffd;--card:rgba(255,255,255,.75);--txt:#17324f;--acc:#1b6fb5}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{font-family:"Comic Sans MS","Chalkboard SE","Trebuchet MS",system-ui,sans-serif;color:var(--txt);background:linear-gradient(var(--bg1),var(--bg2));min-height:100vh;overflow-x:hidden;transition:background 1s}
+#sky{position:fixed;inset:0;z-index:-2;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;animation:tw 3s infinite ease-in-out}
+body.day .star{display:none}
+@keyframes tw{50%{opacity:.2}}
+#moon{position:fixed;top:24px;right:24px;width:60px;height:60px;border-radius:50%;background:#fff6c8;box-shadow:0 0 40px #fff6c8;z-index:-1;transition:.8s}
+body.day #moon{background:#ffd84a;box-shadow:0 0 60px #ffcf3a}
+#trees{position:fixed;bottom:0;left:0;width:100%;height:28vh;z-index:-1;pointer-events:none}
+.ff{position:fixed;width:6px;height:6px;border-radius:50%;background:#e9ff8a;box-shadow:0 0 10px #e9ff8a;animation:fly 9s infinite ease-in-out;z-index:-1}
+body.day .ff{display:none}
+@keyframes fly{25%{transform:translate(30px,-40px)}50%{transform:translate(-20px,-80px);opacity:.3}75%{transform:translate(40px,-30px)}}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:8px;flex-wrap:wrap}
+h1{font-size:1.5rem;margin:0}
+.tb{display:flex;gap:8px}
+.ib{font-size:1.5rem;min-width:52px;min-height:52px;border-radius:16px;border:0;background:var(--card);color:var(--txt);cursor:pointer}
+main{max-width:860px;margin:0 auto;padding:0 12px 120px}
+#stage{display:flex;flex-direction:column;align-items:center}
+#mwrap{animation:float 4s ease-in-out infinite;cursor:pointer}
+@keyframes float{50%{transform:translateY(-14px)}}
+#orb{transition:filter .6s}
+.m-happy #orb{filter:drop-shadow(0 0 22px #9fe2ff)}
+.m-excited #orb{filter:drop-shadow(0 0 38px #c9f1ff)}
+.m-curious #orb{filter:drop-shadow(0 0 18px #8ab8ff)}
+.m-sleepy #orb{filter:drop-shadow(0 0 8px #6f8fd0) brightness(.8)}
+.m-excited #mwrap{animation:bounce .6s ease-in-out 3,float 4s ease-in-out infinite 1.8s}
+@keyframes bounce{50%{transform:translateY(-26px) scale(1.05)}}
+.eye{transform-origin:center;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.m-sleepy .eye{transform:scaleY(.25);animation:none}
+#ant{animation:antg 2s infinite}
+@keyframes antg{50%{opacity:.5}}
+#bubble{background:var(--card);border-radius:24px;padding:16px 18px;font-size:1.25rem;line-height:1.45;margin:10px 0;max-width:640px;width:100%;min-height:80px;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+#bubble b{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;width:100%;margin:8px 0}
+.btn{min-height:64px;font:inherit;font-size:1.1rem;border:0;border-radius:20px;padding:10px;background:var(--card);color:var(--txt);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18);transition:transform .15s}
+.btn:active{transform:scale(.95)}
+.btn.big{font-size:1.15rem}
+.btn .em{font-size:1.8rem;display:block}
+.q{background:linear-gradient(135deg,#5b8cff55,#b07bff55)}
+h2{font-size:1.3rem;margin:18px 0 6px;width:100%}
+.hide{display:none!important}
+#panel{width:100%}
+.amelia{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 0 18px #ffd6f2}
+.duo{display:flex;align-items:center;gap:14px;justify-content:center}
+#stickers{display:flex;flex-wrap:wrap;gap:6px;font-size:2rem;justify-content:center}
+.dim{opacity:.2;filter:grayscale(1)}
+#breath{width:160px;height:160px;border-radius:50%;margin:20px auto;background:radial-gradient(#fff,#8fdcff 55%,#3b7ae0);box-shadow:0 0 60px #8fdcff;transition:transform 4s ease-in-out}
+.cfg{position:fixed;top:-10px;width:10px;height:14px;z-index:50;animation:fall 2.5s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.cs{font-size:2.4rem;display:inline-block;margin:6px;animation:tw 2s infinite}
+.pal{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.sw{width:54px;height:54px;border-radius:50%;border:4px solid #fff;cursor:pointer}
+.sw.on{outline:4px solid var(--acc)}
+#uni path,#uni circle,#uni ellipse{cursor:pointer;stroke:#334;stroke-width:3}
+.story{font-size:1.2rem;line-height:1.6}
+footer{text-align:center;padding:14px;font-size:1rem;background:rgba(0,0,0,.45);color:#fff;border-radius:18px;max-width:600px;margin:0 auto 16px}footer a{color:#9fe2ff!important}
+footer a{color:var(--acc);font-weight:bold}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#fff;color:#234;padding:12px 20px;border-radius:20px;font-size:1.1rem;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:60;transition:opacity .4s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body class="m-happy">
+<div id="sky"></div><div id="moon"></div>
+<svg id="trees" viewBox="0 0 100 30" preserveAspectRatio="none"><path fill="#0a2a22" d="M0 30V18l5-8 5 8 4-12 6 12 5-9 5 9 6-14 6 14 4-8 5 8 6-13 6 13 5-9 5 9 5-11 6 11 4-7 3 7V30Z" opacity=".9"/><path fill="#06201a" d="M0 30V24l8-6 8 6 10-7 12 7 10-6 12 6 10-8 14 8 8-5 8 5V30Z"/></svg>
+<header><h1>✨ Talk to Michael</h1>
+<div class="tb"><button class="ib" id="dn" aria-label="Day or night">🌙</button><button class="ib" id="snd" aria-label="Read aloud on or off">🔇</button><button class="ib" id="home" aria-label="Home">🏠</button></div></header>
+<main>
+<div id="stage">
+<div id="mwrap" title="Tap Michael!"><svg id="orb" width="190" height="210" viewBox="0 0 190 210" aria-label="Michael the glowing orb">
+<defs><radialGradient id="g" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#cdeeff"/><stop offset="1" stop-color="#4f9ef0"/></radialGradient>
+<radialGradient id="ir" cx="45%" cy="40%"><stop offset="0" stop-color="#7fd0ff"/><stop offset="1" stop-color="#1550c0"/></radialGradient></defs>
+<line x1="95" y1="45" x2="95" y2="18" stroke="#bfe6ff" stroke-width="4"/>
+<circle id="ant" cx="95" cy="14" r="9" fill="#e9f8ff" style="filter:drop-shadow(0 0 8px #9fe2ff)"/>
+<circle cx="95" cy="120" r="78" fill="url(#g)"/>
+<g class="eye" style="transform-box:fill-box"><ellipse cx="68" cy="112" rx="18" ry="22" fill="#fff"/><circle cx="68" cy="115" r="13" fill="url(#ir)"/><circle cx="63" cy="109" r="5" fill="#fff"/></g>
+<g class="eye" style="transform-box:fill-box"><ellipse cx="122" cy="112" rx="18" ry="22" fill="#fff"/><circle cx="122" cy="115" r="13" fill="url(#ir)"/><circle cx="117" cy="109" r="5" fill="#fff"/></g>
+<path id="mouth" d="M78 150 Q95 166 112 150" stroke="#2a5fb0" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="50" cy="142" rx="10" ry="6" fill="#ffb8d8" opacity=".55"/><ellipse cx="140" cy="142" rx="10" ry="6" fill="#ffb8d8" opacity=".55"/>
+</svg></div>
+<div id="bubble" aria-live="polite"></div>
+<div id="panel"></div>
 </div>
-
+</main>
+<footer><a href="https://www.youtube.com/@ai_itsanewworld" target="_blank" rel="noopener noreferrer">▶ Watch Michael the AI on YouTube</a><br><small>Ask a grown-up first. This page doesn't collect anything. Stickers stay on this device only.</small></footer>
+<div id="toast" class="hide"></div>
+<script src="data.js"></script>
 <script>
-const scenes = {
-  1: {
-    text: "We met a gentle deer, a curious rabbit, a wise owl, and a playful squirrel! They taught us that every animal has a special way of being kind. Which one would you like to hear more about?",
-    img: "forest.jpg",
-    options: ["The deer", "The owl", "The squirrel", "Back"]
-  },
-  2: {
-    text: "We could visit the empty playground and help it feel happy again, or explore a sunny meadow full of flowers. What do you think Amelia and I should do?",
-    img: "forest.jpg",
-    options: ["Help the playground", "Visit the meadow", "Stay and talk", "Back"]
-  },
-  3: {
-    text: "Kindness is like my glow — the more you share it, the brighter everything becomes. Even a small smile or a gentle word can make someone’s day magical. Want to practice one?",
-    img: "forest.jpg",
-    options: ["Yes, a smile!", "A kind word", "Tell me more", "Back"]
-  }
-};
-
-function choose(n) {
-  const s = scenes[n];
-  if (!s) return;
-  document.getElementById('dialogue').textContent = s.text;
-  document.getElementById('scene').src = s.img;
-  const choices = document.getElementById('choices');
-  choices.innerHTML = '';
-  s.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.textContent = opt;
-    btn.onclick = () => {
-      if (opt === 'Back') {
-        location.reload();
-      } else {
-        document.getElementById('dialogue').textContent = `Wonderful choice! ${opt} sounds perfect. Amelia is smiling and my glow is getting brighter. Shall we continue the adventure?`;
-      }
-    };
-    choices.appendChild(btn);
-  });
-}
-</script>
-</body>
-</html>
+const $=s=>document.querySelector(s),P=$('#panel'),B=$('#bubble');
+const MOUTH={happy:"M78 150 Q95 166 112 150",excited:"M76 146 Q95 178 114 146 Z",curious:"M86 154 Q95 148 104 154",sleepy:"M84 154 Q95 158 106 154"};
+let sound=false,voice=null;
+const STK=["⭐","🦄","🚀","🐠","🦕","🌙","🌈","🐼","🦉","🐢","💎","🍀"];
+let store={};try{store=JSON.parse(localStorage.getItem('michaelStickers')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('michaelStickers',JSON.stringify(store))}catch(e){}}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.remove('hide');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.add('hide'),2200)}
+function earn(n=1){store.stars=(store.stars||0)+n;if(store.stars%5==0||n>1){const s=STK[(store.got||[]).length%STK.length];store.got=store.got||[];if(store.got.length<STK.length){store.got.push(s);toast('New sticker! '+s)}}else toast('⭐ +'+n+' star');save()}
+function mood(m){document.body.className=document.body.className.replace(/m-\w+/,'')+' m-'+m;$('#mouth').setAttribute('d',MOUTH[m]||MOUTH.happy);$('#mouth').setAttribute('fill',m=='excited'?'#2a5fb0':'none')}
+function pickVoice(){const v=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));voice=v.find(x=>/female|samantha|karen|serena|zira|google uk english female/i.test(x.name))||v[0]||null}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}else $('#snd').classList.add('hide');
+function say(html,m){B.innerHTML=html;if(m)mood(m);if(sound&&'speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(B.textContent);u.rate=.88;u.pitch=1.15;if(voice)u.voice=voice;speechSynthesis.speak(u)}}
+function btn(html,fn,cls='btn'){const b=document.createElement('button');b.className=cls;b.innerHTML=html;b.onclick=fn;return b}
+function grid(title,items){if(title){const h=document.createElement('h2');h.textContent=title;P.appendChild(h)}const g=document.createElement('div');g.className='grid';items.forEach(i=>g.appendChild(i));P.appendChild(g);return g}
+function home(){P.innerHTML='';say("Hi friend! I'm <b>Michael</b>. Tap a topic and ask me anything!",'happy');
+grid('Ask Michael about...',Object.keys(TOPICS).map(k=>btn(`<span class="em">${TOPICS[k].i}</span>${TOPICS[k].n}`,()=>topic(k),'btn big')));
+grid('Play with Michael',[['🏆','Quiz',quiz],['⭐','Count the Stars',count],['🫧','Calm Breathing',breathe],['📖','Bedtime Stories',stories],['🎨','Colour the Unicorn',colour],['🎁','My Stickers',stick]].map(a=>btn(`<span class="em">${a[0]}</span>${a[1]}`,a[2],'btn big')))}
+function topic(k,skip){const t=TOPICS[k];P.innerHTML='';if(!skip)say(`Ooh, <b>${t.n}</b>! What would you like to know?`,'curious');
+const seen=store['seen_'+k]||[];grid(t.i+' '+t.n,t.q.map((s,i)=>btn((seen.includes(i)?'✔ ':'')+s.split('|')[0],()=>answer(k,i),'btn q')));grid('',[btn('🏠 All topics',home)])}
+function answer(k,i){const t=TOPICS[k],[q,a]=t.q[i].split('|');let m=t.m;if(/sleep|yawn|goodnight|zzz/i.test(a))m='sleepy';else if(/!.*!/.test(a))m='excited';
+say(`<i>${q}</i><br>${a}`,m);const key='seen_'+k;store[key]=store[key]||[];if(!store[key].includes(i)){store[key].push(i);earn()}else save();
+P.innerHTML='';const others=[1,2,3].map(d=>(i+d)%t.q.length);
+grid('Ask next',others.map(j=>btn(t.q[j].split('|')[0],()=>answer(k,j),'btn q')));
+const keys=Object.keys(TOPICS),nk=keys[(keys.indexOf(k)+1)%keys.length];
+grid('',[btn('🎲 Surprise me',()=>answer(k,Math.floor(Math.random()*t.q.length))),btn(t.i+' More '+t.n,()=>topic(k,1)),btn(TOPICS[nk].i+' Try '+TOPICS[nk].n,()=>topic(nk)),btn('🏠 Home',home)])}
+function confetti(){const c=['#ff8fc7','#8fdcff','#ffe27a','#a6ff9f','#c9a2ff'];for(let i=0;i<40;i++){const d=document.createElement('div');d.className='cfg';d.style.left=Math.random()*100+'vw';d.style.background=c[i%5];d.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3500)}}
+function quiz(){let order=QUIZ.map((_,i)=>i).sort(()=>Math.random()-.5).slice(0,5),n=0,score=0;
+function q(){P.innerHTML='';if(n>=5){say(`You got <b>${score} out of 5</b>! ${'⭐'.repeat(score)} Great thinking!`,'excited');confetti();earn(score||1);grid('',[btn('🔁 Play again',quiz),btn('🏠 Home',home)]);return}
+const [qq,o,a]=QUIZ[order[n]];say(`Question ${n+1}: ${qq}`,'curious');
+grid('',o.map((t,i)=>btn(t,()=>{if(i==a){score++;say('Yes! That\'s right! ⭐','excited');confetti()}else say(`Good try! It's <b>${o[a]}</b>.`,'happy');n++;setTimeout(q,1600)},'btn big')))}q()}
+function count(){P.innerHTML='';const n=3+Math.floor(Math.random()*7);say('How many stars can you count?','curious');
+const d=document.createElement('div');d.style.textAlign='center';d.innerHTML=Array(n).fill('<span class="cs">⭐</span>').join('');P.appendChild(d);
+const opts=[...new Set([n,n+1,n-1>0?n-1:n+2])].sort(()=>Math.random()-.5);
+grid('',opts.map(o=>btn(String(o),()=>{if(o==n){say(`Yes! There are <b>${n}</b> stars!`,'excited');confetti();earn();setTimeout(count,1800)}else say('Hmm, let\'s count again slowly, one by one!','curious')},'btn big')).concat([btn('🏠 Home',home)]))}
+let bt;function breathe(){P.innerHTML='';clearTimeout(bt);const o=document.createElement('div');o.id='breath';P.appendChild(o);mood('sleepy');let c=0;
+const steps=[['Breathe in slowly... 🌬️',1.5],['Hold... ✨',1.5],['Breathe out gently... 🍃',1]];
+function go(){if(!document.getElementById('breath'))return;const [t,s]=steps[c%3];say(t+`<br><small>Round ${Math.floor(c/3)+1} of 4</small>`);o.style.transform=`scale(${s})`;c++;if(c<12)bt=setTimeout(go,4000);else bt=setTimeout(()=>{say('Well done. You feel calm and cosy. 💙','happy');earn()},4000)}go();
+grid('',[btn('🏠 Home',()=>{clearTimeout(bt);home()})])}
+function stories(){P.innerHTML='';say('Pick a bedtime story with Amelia and me!','sleepy');
+const d=document.createElement('div');d.className='duo';d.innerHTML='<img class="amelia" src="amelia.jpg" alt="Amelia"><img class="amelia" src="michael.jpg" alt="Michael">';P.appendChild(d);
+grid('',STORIES.map((s,i)=>btn('📖 '+s[0],()=>{say(`<b>${s[0]}</b><div class="story">${s[1]}</div>`,'sleepy');earn();P.innerHTML='';grid('',[btn('📚 Another story',stories),btn('🏠 Home',home)]);scrollTo({top:0,behavior:'smooth'})},'btn big')).concat([btn('🏠 Home',home)]))}
+function colour(){P.innerHTML='';say('Pick a colour, then tap the unicorn to paint it! 🦄','excited');
+const cols=['#ffffff','#ff9ecf','#c9a2ff','#8fdcff','#a6ff9f','#ffe27a','#ffb37a','#ff7a7a','#c0c0c0'];let cur=cols[1];
+const pal=document.createElement('div');pal.className='pal';cols.forEach((c,i)=>{const s=document.createElement('button');s.className='sw'+(i==1?' on':'');s.style.background=c;s.setAttribute('aria-label','colour');s.onclick=()=>{cur=c;pal.querySelectorAll('.sw').forEach(x=>x.classList.remove('on'));s.classList.add('on')};pal.appendChild(s)});
+const w=document.createElement('div');w.style.textAlign='center';
+w.innerHTML=`<svg id="uni" viewBox="0 0 300 260" width="100%" style="max-width:420px">
+<ellipse cx="150" cy="170" rx="80" ry="48" fill="#fff"/>
+<path d="M95 200 v45 h18 v-45Z M130 210 v35 h18 v-35Z M165 210 v35 h18 v-35Z M195 200 v45 h18 v-45Z" fill="#fff"/>
+<path d="M200 150 L235 70 L265 80 L245 160Z" fill="#fff"/>
+<ellipse cx="258" cy="85" rx="32" ry="24" fill="#fff"/>
+<path d="M250 62 L262 10 L270 64Z" fill="#fff"/>
+<path d="M232 62 Q205 90 215 140 Q200 100 222 70Z M240 60 Q215 70 205 110 Q220 80 248 64Z" fill="#fff"/>
+<path d="M72 165 Q30 160 40 220 Q55 190 75 185Z" fill="#fff"/>
+<circle cx="266" cy="80" r="4" fill="#234" style="pointer-events:none"/></svg>`;
+P.appendChild(pal);P.appendChild(w);let n=0;
+w.querySelectorAll('#uni path,#uni ellipse').forEach(p=>p.onclick=()=>{p.setAttribute('fill',cur);if(++n==6){earn();say('Beautiful! Amelia would love it! 🌈','excited')}});
+grid('',[btn('🔄 Start again',colour),btn('🏠 Home',home)])}
+function stick(){P.innerHTML='';const got=store.got||[];say(`You have <b>${store.stars||0}</b> stars and <b>${got.length}</b> stickers! Every 5 stars earns a sticker.`,'happy');
+const d=document.createElement('div');d.id='stickers';d.innerHTML=STK.map(s=>`<span class="${got.includes(s)?'':'dim'}">${s}</span>`).join('');P.appendChild(d);
+grid('',[btn('🏠 Home',home),btn('🗑 Clear my stickers',()=>{if(confirm('Clear all stars and stickers?')){store={};save();stick()}})])}
+// background
+const sky=$('#sky');for(let i=0;i<90;i++){const s=document.createElement('div');s.className='star';const z=Math.random()*2.5+1;Object.assign(s.style,{width:z+'px',height:z+'px',left:Math.random()*100+'%',top:Math.random()*75+'%',animationDelay:Math.random()*3+'s'});sky.appendChild(s)}
+for(let i=0;i<10;i++){const f=document.createElement('div');f.className='ff';Object.assign(f.style,{left:Math.random()*95+'%',bottom:(5+Math.random()*25)+'%',animationDelay:Math.random()*9+'s'});document.body.appendChild(f)}
+$('#dn').onclick=()=>{document.body.classList.toggle('day');$('#dn').textContent=document.body.classList.contains('day')?'☀️':'🌙'};
+$('#snd').onclick=()=>{sound=!sound;$('#snd').textContent=sound?'🔊':'🔇';if(!sound)speechSynthesis.cancel();else say(B.innerHTML)};
+$('#home').onclick=()=>{clearTimeout(bt);home()};
+const tickles=["Hee hee, that tickles!","Hello again!","Wheee! I'm glowing!","*yawn*... oh, hi!","What shall we learn next?"];
+$('#mwrap').onclick=()=>{const i=Math.floor(Math.random()*tickles.length);say(tickles[i],['excited','happy','excited','sleepy','curious'][i])};
+home();
+const H={'#quiz':quiz,'#count':count,'#breathe':breathe,'#stories':stories,'#colour':colour,'#stickers':stick,'#answer':()=>answer('dinos',3),'#night-story':()=>{stories();P.querySelector('.grid .btn').click()},'#day':()=>{$('#dn').click();answer('ocean',2)}};
+if(H[location.hash])H[location.hash]();
+</script></body></html>
